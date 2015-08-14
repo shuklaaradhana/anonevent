@@ -31,7 +31,7 @@ class TimeScale extends Component {
 
     return (
       <ul style={timeScale}>
-        {ticks.map(tick => <TimeTicks {...tick} />)}
+        {ticks.map((tick, index) => <TimeTicks key={index} {...tick} />)}
       </ul>
     )
   }

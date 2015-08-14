@@ -14,7 +14,7 @@ const styles = {
     marginRight: 20,
   },
   rightLayoutDiv: {
-    width: 761,
+    width: 781,
   },
 }
 
@@ -53,7 +53,7 @@ class Yo extends Component {
             rightLayoutDiv
           )}
         >
-          <MasterUI />
+          <MasterUI events={events}/>
         </div>
       </div>
     )

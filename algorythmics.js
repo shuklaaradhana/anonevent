@@ -1,32 +1,45 @@
-// npm
-import React, { Component } from 'react'
+const eventsColls = [
+  [ {start: 30, end: 150}, {start: 540, end: 600}, {start: 560, end: 620}, {start: 610, end: 670} ],
+  [ {start: 30, end: 150}, {start: 540, end: 620}, {start: 560, end: 620}, {start: 610, end: 670} ],
+  [ {start: 30, end: 150}, {start: 540, end: 620}, {start: 560, end: 620}, {start: 610, end: 670}, {start: 660, end: 670} ],
+  [ {start: 30, end: 150}, {start: 540, end: 620}, {start: 560, end: 620}, {start: 610, end: 670}, {start: 615, end: 630} ],
+  [ {start: 30, end: 150}, {start: 540, end: 620}, {start: 560, end: 620}, {start: 610, end: 670}, {start: 615, end: 630}, {start: 610, end: 620} ],
+  [ {start: 30, end: 150}, {start: 540, end: 620}, {start: 560, end: 620}, {start: 610, end: 670}, {start: 615, end: 630}, {start: 610, end: 620}, {start: 160, end: 170} ],
+  [ {start: 30, end: 150}, {start: 30, end: 150}, {start: 30, end: 150}, {start: 30, end: 150}, {start: 30, end: 150} ],
+]
 
-// components
-import Event from './event.jsx'
+const answers = [
+  [
+    [1, 2, 2, 2],
+    [0, 0, 1, 0],
+  ],
+  [
+    [1, 3, 3, 3],
+    [0, 0, 1, 2],
+  ],
+  [
+    [1, 3, 3, 3, 2],
+    [0, 0, 1, 2, 0],
+  ],
+  [
+    [1, 4, 4, 4, 4],
+    [0, 0, 1, 2, 3],
+  ],
+  [
+    [1, 5, 5, 5, 5, 5],
+    [0, 0, 1, 2, 3, 4],
+  ],
+  [
+    [1, 5, 5, 5, 5, 5, 1],
+    [0, 0, 1, 2, 3, 4, 0],
+  ],
+  [
+    [5, 5, 5, 5, 5],
+    [0, 1, 2, 3, 4],
+  ],
+]
 
-const styles = {
-  eventListUl: {
-    position: 'relative',
-    float: 'left',
-    display: 'block',
-    width: 620,
-    height: 720,
-    marginTop: 23,
-    paddingRight: 10,
-    paddingLeft: 10,
-    backgroundColor: '#454b5a',
-    listStyle: 'none',
-  },
-}
-
-// Algorythmics
-///////////////
-
-// see $PROJECT_ROOT/algorythmics.js for original draft of algorythm
-//                           + more comments
-//                           + adhoc functional test
-//                           + more messy
-
+// overlap predicate
 /**
  * Determine if two events overlap
  * 
@@ -41,6 +54,8 @@ const isOverlapping = (eventA, eventB) => {
   return eventA.start < eventB.end && eventA.end > eventB.start
 }
 
+// n (reduce)
+// reduce a list of all events that overlap a given event
 /**
  * Generate list of all events that overlap a given event
  * 
@@ -66,6 +81,8 @@ const reduceOverlaps = (events, event, index) => {
   }, [])
 }
 
+// n^2 (map with nested reduce)
+// collect the overlapping events for each event
 /**
  * The events with overlapping events for each event
  * 
@@ -80,6 +97,10 @@ const collectOverlaps = (events) => {
   })
 }
 
+// n (reduce overlaps)
+// reduce concurrent events for a given set of overlapping indices to a count
+//  - concurrent events means there are more than one events
+//    overlapping eachother and the original event
 /**
  * Count of concurrent events for a given set of overlapping indices
  * 
@@ -103,6 +124,11 @@ const countConcurrentEvents = (overlapIndices, allOverlaps, curIndex) => {
   }, []).length
 }
 
+// marshall three types of event overlaps to number of events spanning width
+//  - no overlaps become single span
+//  - overlaps but no concurrent events become 2 spans
+//  - overlaps with concurrent events become 
+//    concurrent events count plus the event itself number of spans
 /**
  * Marshall three types of event overlaps to number of events spanning width
  * 
@@ -125,6 +151,11 @@ const calcDenominator = (overlapIndices, concurrentEventCount) => {
   return denominator
 }
 
+// n^2 (map with nested reduce)
+// TODO include y axis prop
+// map over each events overlaping collection and calculate
+//  - denominators for calculating widths
+//  - xFactors for x axis positions
 /**
  * Prepare props for render of events
  * 
@@ -134,7 +165,8 @@ const calcDenominator = (overlapIndices, concurrentEventCount) => {
  * @return {array} - array of props needed to render list of events
  * 
  */
-const prepProps = (events, overlaps) => {
+const renderEvents = (events, overlaps) => {
+  // TODO get rid of counter if possible?
   let counter = 0
   return overlaps.map((overlapIndices, index) => {
     // use concurrentEventCount to calculate number of other events also
@@ -159,34 +191,32 @@ const prepProps = (events, overlaps) => {
   })
 }
 
-const preppedProps = (events) => {
+// TODO output jsx
+
+// n^2 (really (n^2) * 2, but we eliminate constants)
+const renderApp = (events) => {
   const overlaps = collectOverlaps(events)
   
-  return prepProps(events, overlaps)
+  return renderEvents(events, overlaps)
 }
 
-// End Algorythmics
-///////////////////
 
-class EventList extends Component {
+// ad-hoc functional test
+console.log('')
+eventsColls.forEach((arr, idx) => {
+  const yo = renderApp(arr)
+  const answer = [
+    yo.map(event => event.denominator),
+    yo.map(event => event.xFactor),
+  ]
+  
+  //if
+  const verdict = _.isEqual(answer, answers[idx])
+    //then
+    ? 'pass'
+    //else
+    : 'fail'
+  
+  console.log(idx, verdict)
+})
 
-  render () {
-    const { eventListUl } = styles
-    const { width } = eventListUl
-    const { events } = this.props
-
-    return (
-      <ul style={eventListUl}>
-        {preppedProps(events).map((eventProps, index) => <Event
-          ulWidth={width}
-          key={index}
-          index={index}
-          {...eventProps}
-        />)}
-      </ul>
-    )
-  }
-
-}
-
-export default EventList

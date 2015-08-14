@@ -16,11 +16,12 @@ class MasterUI extends Component {
 
   render () {
     const { masterUIDiv } = styles
+    const { events } = this.props
 
     return (
       <div style={masterUIDiv}>
         <TimeScale />
-        <EventList />
+        <EventList  events={events}/>
       </div>
     )
   }
