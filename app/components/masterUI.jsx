@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 // components
 import TimeScale from './timeScale.jsx'
+import EventList from './eventList.jsx'
 
 const styles = {
   masterUIDiv: {
@@ -19,7 +20,7 @@ class MasterUI extends Component {
     return (
       <div style={masterUIDiv}>
         <TimeScale />
-        no,... I'm the UI
+        <EventList />
       </div>
     )
   }
