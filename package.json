@@ -2,7 +2,7 @@
   "name": "anonevent",
   "version": "1.0.0",
   "description": "An exploration of rendering a single day calendar view in react.js",
-  "main": "app.js",
+  "main": "./dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/jayseeg/anonevent/issues"
   },
-  "homepage": "https://github.com/jayseeg/anonevent#readme"
+  "homepage": "https://github.com/jayseeg/anonevent#readme",
+  "devDependencies": {
+    "webpack": "^1.11.0"
+  }
 }
