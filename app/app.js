@@ -1,1 +1,3 @@
-console.log('yo')
+const yo = 'yoyo'
+
+console.log(yo)

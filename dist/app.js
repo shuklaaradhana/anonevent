@@ -44,7 +44,11 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	console.log('yo')
+	'use strict';
+
+	var yo = 'yoyo';
+
+	console.log(yo);
 
 /***/ }
 /******/ ]);
