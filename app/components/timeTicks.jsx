@@ -6,7 +6,7 @@ import { extend } from 'lodash'
 const styles = {
   li: {
     marginRight: 12,
-    marginBottom: 10.5,
+    marginBottom: 12,
   },
   span: {
     fontFamily: 'Arial, Helvetica',
@@ -18,7 +18,7 @@ const styles = {
     fontWeight: 600,
   },
   emphasizedInnerSpan: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 500,
     color: 'white',
   },
