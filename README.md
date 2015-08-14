@@ -3,6 +3,13 @@ An exploration of rendering a single day calendar view in react.js
 
 [do it live](http://anonevent.surge.sh/ "Fuck it")
 
+do it local:
+```
+npm i
+npm start
+```
+ymmv, you may need to install webpack & maybe other packages globally as well,... but dist/index.html should be good to go as is I believe
+
 #### Event Calendar
 
 Given a set of events, render the events on a single day calendar (similar to Outlook, Calendar.app, and Google Calendar). There are several properties of the layout:
