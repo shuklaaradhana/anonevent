@@ -10,7 +10,8 @@ const styles = {
   timeScale: {
     float: 'left',
     width: 100,
-    marginTop: 17,
+    marginTop: 13,
+    paddingLeft: 0,
     listStyle: 'none',
     textAlign: 'right',
   },
