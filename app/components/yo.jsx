@@ -1,17 +1,20 @@
 // npm
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import { extend } from 'lodash'
+
+// components
+import MasterUI from './masterUI.jsx'
 
 const styles = {
   layoutDivs: {
     float: 'left',
   },
   leftLayoutDiv: {
-    width: 350,
+    width: 199,
     marginRight: 20,
   },
   rightLayoutDiv: {
-    width: 590,
+    width: 761,
   },
 }
 
@@ -50,7 +53,7 @@ class Yo extends Component {
             rightLayoutDiv
           )}
         >
-          I'm the UI
+          <MasterUI />
         </div>
       </div>
     )
