@@ -1,7 +1,19 @@
-import React from "react"
-import Yo from "./yo.jsx"
+// npm
+import React from 'react'
 
-React.render(
-  <Yo name="Bif"/>,
-  document.body
-)
+// components
+import Yo from './components/yo.jsx'
+
+// data
+import defaultEvents from './data/defaultEvents.js'
+
+window.layOutDay = function layOutDay (events) {
+  console.log('nom nom nom')
+
+  return React.render(
+    <Yo name='Bif' events={events} />,
+    document.body
+  )
+}
+
+layOutDay(defaultEvents)
