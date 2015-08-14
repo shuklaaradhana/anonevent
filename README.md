@@ -1,5 +1,7 @@
 # anonevent
-An exploration of rendering a single day calendar view in react.js [do it live](http://anonevent.surge.sh/ "Fuck it")
+An exploration of rendering a single day calendar view in react.js
+
+[do it live](http://anonevent.surge.sh/ "Fuck it")
 
 #### Event Calendar
 
