@@ -8,7 +8,7 @@ class Yo extends Component {
 
     return (
       <div>
-        Yo, {name}
+        Yo yo yo, {name},... break it dowwwwwnnnnnnnn
       </div>
     )
   }
