@@ -1,6 +1,9 @@
 // npm
 import React, { Component } from 'react'
 
+// components
+import TimeScale from './timeScale.jsx'
+
 const styles = {
   masterUIDiv: {
     backgroundColor: '#5d6071',
@@ -15,6 +18,7 @@ class MasterUI extends Component {
 
     return (
       <div style={masterUIDiv}>
+        <TimeScale />
         no,... I'm the UI
       </div>
     )
